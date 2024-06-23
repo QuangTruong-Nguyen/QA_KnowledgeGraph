@@ -73,7 +73,7 @@ def save_data(dict_jd):
 
 def info_job(driver):
     
-    id=0
+    # id=0
 
     num_job= driver.find_element(By.XPATH, '//div[@class="jobsearch-JobCountAndSortPane-jobCount css-13jafh6 eu4oa1w0"]//span').text
     num_job_=re.sub(r'\D', '', num_job)
@@ -131,7 +131,8 @@ def info_job(driver):
                     parser = BeautifulSoup(get_html, 'html.parser')        
                     jd = parser.get_text()    
                     content_jd += jd.replace("\n"," ").replace("   ","")
-                id+=1
+                # id+=1
+                id=name_company+'@'+name_job
                 
                 try:
                     dict_job[id]
