@@ -6,3 +6,7 @@ numpy
 pandas
 bs4
 chromedriver_autoinstaller
+instructor
+langchain_community
+google.generativeai
+neo4j

@@ -2,7 +2,7 @@
 import argparse
 from selenium.webdriver.edge.options import Options
 from selenium import webdriver
-from utils import save_data, access, info_job,search, init_driver
+from scrape_data_indeed.utils import save_data, access, info_job,search, init_driver
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
