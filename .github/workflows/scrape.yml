@@ -36,3 +36,35 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+    - name: Pull latest changes
+      run: git pull origin main
+
+    - name: Create .env file to store API key
+      run: |
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> ./.env
+          echo "NEO4J_URI=${{ secrets.NEO4J_URI }}" >> ./.env
+          echo "NEO4J_USERNAME=${{ secrets.NEO4J_USERNAME }}" >> ./.env
+          echo "NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}" >> ./.env
+          
+
+    - name: Run Python scripts to update KG
+      run: python update_kg.py
+
+    - name: Remove file .env
+      run: rm ./.env
+        
+    - name: Commit files
+      run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add -A
+          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+
+    - name: Push changes
+      uses: ad-m/github-push-action@v0.6.0
+      with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main

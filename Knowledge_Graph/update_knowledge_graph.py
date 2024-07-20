@@ -2,7 +2,8 @@ from config import configure_setup
 from classNode import JobKnowledgeGraph
 from cypher_utils import make_cypher_query
 from process_data import get_job_desc
-from datetime import date
+from datetime import datetime
+# from datetime import date
 
 
 
@@ -33,7 +34,9 @@ if __name__ == "__main__":
     # knowledge_graph.query(delete_cypher)
 
     # filename = f"job_posts_data/job_posts_artificial_intelligence_{str(date.today())}.json"
-    filename = f"./data/data_2024_06_23.json"
+    
+    today = datetime.today().strftime('%Y_%m_%d')
+    filename = f"./data/data_{today}.json"
 
     n_processed = 0
     job_desc = get_job_desc(filename)
