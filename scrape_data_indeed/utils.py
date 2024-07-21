@@ -40,7 +40,7 @@ def init_driver():
 def access(driver,url):
     print("_"*30, "ACCESS URL","_"*30)
     driver.get(url)
-    sleep(5)
+    sleep(8)
 
 
 def search(driver, job, location):
