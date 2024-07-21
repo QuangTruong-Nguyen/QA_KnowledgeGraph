@@ -25,7 +25,7 @@ jobs:
 
         
     - name: Run scraping script
-      run: python scrape_data.py
+      run: python ./scrape_data_indeed/scrape_data.py
 
     - name: Commit and push changes
       run: |
