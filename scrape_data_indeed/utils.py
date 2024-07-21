@@ -52,7 +52,7 @@ def search(driver, job, location):
     search_box_location.send_keys(location)
 
     search_box_location.send_keys(Keys.RETURN)
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(8)
     
 
 
@@ -97,8 +97,7 @@ def info_job(driver):
             pass
         
         for element in info_jobs:
-            
-            element.click()     
+            element.click()  
             try:              
                 today = datetime.today()
                 date_post= element.find_element(By.XPATH, './/span[@data-testid="myJobsStateDate"]').text
