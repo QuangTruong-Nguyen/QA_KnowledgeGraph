@@ -17,11 +17,11 @@ jobs:
 
       - name: Create .env file to store API key
         run: |
-          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> ./.env
-          echo "NEO4J_URI=${{ secrets.NEO4J_URI }}" >> ./.env
-          echo "NEO4J_USERNAME=${{ secrets.NEO4J_USERNAME }}" >> ./.env
-          echo "NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}" >> ./.env
-          echo "TAVILY_API_KEY=${{ secrets.TAVILY_API_KEY }}" >> ./.env
+          echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+          echo "NEO4J_URI=${{ secrets.NEO4J_URI }}" >> .env
+          echo "NEO4J_USERNAME=${{ secrets.NEO4J_USERNAME }}" >> .env
+          echo "NEO4J_PASSWORD=${{ secrets.NEO4J_PASSWORD }}" >> .env
+          echo "TAVILY_API_KEY=${{ secrets.TAVILY_API_KEY }}" >> .env
 
 
       - name: Push to hub
