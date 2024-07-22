@@ -1,0 +1,36 @@
+examples:
+  - question_example: Which companies located in 'San Francisco' are hiring for 'Data Scientist' roles with a 'Master's Degree' requirement?
+    cypher_example: |
+      MATCH (j:Job)<-[:RECRUITS]-(c:Company)-[:LOCATES_IN]->(l:Location)
+      MATCH (j)-[:REQUIRES]->(e:Education)
+      WHERE toLower(j.name) CONTAINS 'data scientist' AND toLower(l.name) CONTAINS 'san francisco' AND toLower(e.name) CONTAINS "master"
+      RETURN DISTINCT c.name AS company
+
+  - question_example: What are the most common skills required for 'Product Manager' jobs across different industries?
+    cypher_example: |
+      MATCH (j:Job)-[:REQUIRES]->(s:Skill)
+      WHERE toLower(j.name) CONTAINS "product manager"  
+      RETURN s.name, count(*) AS skill_count
+      ORDER BY skill_count DESC
+      LIMIT 10
+
+  - question_example: Find all jobs that require at least 5 years of experience and a 'Bachelor's Degree' in 'Computer Science'
+    cypher_example: |
+      MATCH (we:Work_Exper)<-[:REQUIRES]-(j:Job)-[:REQUIRES]->(e:Education)
+      WHERE toLower(e.name) CONTAINS "bachelor" AND toLower(e.fields) CONTAINS "computer science" AND toLower(we.duration) CONTAINS "5 years"
+      RETURN j AS job
+
+  - question_example: Find companies recruiting "Machine Learning" jobs and their corresponding job titles.
+    cypher_example: |
+      MATCH (company: Company)-[:RECRUITS]->(job: Job)
+      WHERE job.name CONTAINS "Machine Learning"
+      RETURN company.name as company_name, job.name as job_title
+
+  - question_example: Machine Learning job requires?
+    cypher_example: |
+      MATCH (j:Job)
+      WHERE toLower(j.name) CONTAINS toLower("Machine Learning")
+      OPTIONAL MATCH (j)-[:REQUIRES]->(s:Skill)
+      OPTIONAL MATCH (j)-[:REQUIRES]->(e:Education)
+      OPTIONAL MATCH (j)-[:REQUIRES]->(we:Work_Exper)
+      RETURN s.name AS skill_requirements, e.name AS education_requirements, we.duration AS work_experience_requirements

@@ -1,0 +1,20 @@
+Node properties:
+Job {{name: STRING, date_posted: DATE, status: STRING, responsibility: STRING, workLevel: STRING, benefitCompensation: STRING, workMode: STRING}}
+Location {{name: STRING, locationType: STRING}}
+Education {{name: STRING, majors: STRING, status: STRING}}
+Skill {{name: STRING}}
+Company {{name: STRING}}
+Sector {{name: STRING}}
+WorkExper {{name: STRING, yearsOfExper: STRING}}
+Relationship properties:
+
+The relationships:
+(:Job)-[:REQUIRES]->(:Education)
+(:Job)-[:REQUIRES]->(:Skill)
+(:Job)-[:REQUIRES]->(:WorkExper)
+(:Job)-[:FROM]->(:Company)
+(:Job)-[:WORK_AT]->(:Location)
+(:Skill)-[:HYPERNYM]->(:Skill)
+(:Company)-[:OPERATED_IN]->(:Sector)
+(:Company)-[:RECRUITS]->(:Job)
+(:Company)-[:LOCATED_IN]->(:Location)

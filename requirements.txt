@@ -10,3 +10,11 @@ instructor
 langchain_community
 google.generativeai
 neo4j
+langchain
+langchain-community
+langchain-google-genai
+langchain-core
+faiss-cpu
+langchainhub
+tavily-python
+chainlit
