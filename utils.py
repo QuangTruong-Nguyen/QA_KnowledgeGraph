@@ -7,16 +7,14 @@ from langchain_core.prompts.prompt import PromptTemplate
 from langchain.chains import GraphCypherQAChain
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 
-
-
 def config():
     load_dotenv()
-    
+
     # Set up Neo4J & Gemini API
     os.environ["NEO4J_URI"] = os.getenv("NEO4J_URI")
     os.environ["NEO4J_USERNAME"] = os.getenv("NEO4J_USERNAME")
     os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD")
-    os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
+    os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
 def load_prompt(filepath):
     with open(filepath, "r") as file:
@@ -26,9 +24,10 @@ def load_prompt(filepath):
 
 def init_():
     config()
-    graph = Neo4jGraph()
+    graph = Neo4jGraph(enhanced_schema= True)
     llm = ChatGoogleGenerativeAI(
-        model= "gemini-1.5-flash-latest"
+        model= "gemini-1.5-flash-latest",
+        temperature = 0
     )
 
     return graph, llm
@@ -36,8 +35,8 @@ def init_():
 def get_llm_response(query):
     # Connect to Neo4J Knowledge Graph
     knowledge_graph, llm_chat = init_()
-    cypher_prompt = load_prompt("Agent/prompts/cypher_prompt.yaml")
-    qa_prompt = load_prompt("Agent/prompts/qa_prompt.yaml")
+    cypher_prompt = load_prompt("prompts/cypher_prompt.yaml")
+    qa_prompt = load_prompt("prompts/qa_prompt.yaml")
 
     CYPHER_GENERATION_PROMPT = PromptTemplate(**cypher_prompt)
     QA_GENERATION_PROMPT = PromptTemplate(**qa_prompt)
