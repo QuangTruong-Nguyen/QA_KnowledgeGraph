@@ -51,7 +51,7 @@ jobs:
           
 
     - name: Run Python scripts to update KG
-      run: python update_kg.py
+      run: python ./Knowledge_Graph/update_knowledge_graph.py
 
     - name: Remove file .env
       run: rm ./.env
