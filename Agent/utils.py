@@ -51,13 +51,7 @@ def get_llm_response(query):
     return chain.invoke({"query": query})["result"]
 
 def llm_answer(message, history):
-    # history_langchain_format = []
-    #
-    # for human, ai in history:
-    #     history_langchain_format.append(HumanMessage(content= human))
-    #     history_langchain_format.append(AIMessage(content= ai))
-    #
-    # history_langchain_format.append(HumanMessage(content= message["text"]))
+
 
     try:
         response = get_llm_response(message["text"])

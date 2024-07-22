@@ -21,7 +21,7 @@ examples = example_pairs["examples"]
 
 # LLM for choose the best similar examples
 load_dotenv()
-os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
+os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
 embedding_model = GoogleGenerativeAIEmbeddings(
     model= "models/text-embedding-004"
@@ -63,7 +63,7 @@ def generate_cypher(question: str) -> str:
     os.environ["NEO4J_URI"] = os.getenv("NEO4J_URI")
     os.environ["NEO4J_USERNAME"] = os.getenv("NEO4J_USERNAME")
     os.environ["NEO4J_PASSWORD"] = os.getenv("NEO4J_PASSWORD")
-    os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
+    os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
     gemini_chat = ChatGoogleGenerativeAI(
         model= "gemini-1.5-flash-latest"

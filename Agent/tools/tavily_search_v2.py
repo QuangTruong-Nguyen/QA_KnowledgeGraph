@@ -7,7 +7,7 @@ from langchain.tools import BaseTool, StructuredTool, tool
 load_dotenv()
 
 os.environ["TAVILY_API_KEY"] = os.getenv("TAVILY_API_KEY")
-os.environ["GOOGLE_API_KEY"] = os.getenv("GEMINI_API_KEY")
+os.environ["GEMINI_API_KEY"] = os.getenv("GEMINI_API_KEY")
 
 def tavily_search(question: str) -> str:
     """
