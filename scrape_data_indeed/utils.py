@@ -11,6 +11,9 @@ import datetime
 import json    
 import os
 from datetime import datetime, timedelta
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 
 def init_driver():
     
@@ -45,8 +48,11 @@ def access(driver,url):
 
 def search(driver, job, location):
     print("_"*30, "SEARCH","_"*30)
-
-    search_box_job = driver.find_element(By.XPATH, '//input[@id="text-input-what"]')
+    
+    search_box_job= WebDriverWait(driver, 10).until(
+    EC.presence_of_element_located((By.XPATH, '//input[@id="text-input-what"]'))
+    )
+    # search_box_job = driver.find_element(By.XPATH, '//input[@id="text-input-what"]')
     search_box_location=driver.find_element(By.XPATH, '//input[@id="text-input-where"]')
     search_box_job.send_keys(job)
     search_box_location.send_keys(location)
