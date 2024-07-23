@@ -116,3 +116,6 @@ hide_cot = false
 
 [meta]
 generated_by = "1.1.304"
+
+[i18n]
+default_locale = "en-US"
